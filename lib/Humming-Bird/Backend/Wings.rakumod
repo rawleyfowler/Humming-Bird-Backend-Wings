@@ -1,12 +1,14 @@
+no precompilation;
+
 use NativeCall;
 use Humming-Bird::Glue;
 use Humming-Bird::Backend;
 
-constant $LIB = %*ENV<WINGS_DEBUG> ?? 'resources/libraries/libwings.so' !! %?RESOURCES<libraries/wings>;
+constant $LIB ='resources/libraries/wings';
 
 unit class Humming-Bird::Backend::Wings does Humming-Bird::Backend;
 
-sub wings_listen(int32 $port, Str $addr, &callback (CArray[int8], int32 --> CArray[int8])) is native($LIB) { * }
+sub WingsListen(int32 $port, Str $addr, &callback (Pointer[int8], int32 --> Pointer[int8])) is nativeconv('thisgnu') is native($LIB) { * }
 
 has %!connections;
 has &!handler;
@@ -44,5 +46,5 @@ method request_handler(CArray[int8] $raw-request, int32 $pid) {
 
 method listen(&handler) {
     &!handler := &handler;
-    wings_listen(8080, '0.0.0.0', self.^lookup('request_handler').assuming(self));
+    WingsListen(8080, '0.0.0.0', self.^lookup('request_handler').assuming(self));
 }
