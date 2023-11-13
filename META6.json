@@ -1,0 +1,43 @@
+{
+    "auth": "zef:rawleyfowler",
+    "build": {
+        "lib": "wings",
+        "src-dir": "cc"
+    },
+	"authors": [
+		"Rawley Fowler"
+	],
+	"build-depends": [
+        "Distribution::Builder::CMake:auth<zef:rawleyfowler>"
+	],
+	"depends": [
+        "Humming-Bird:auth<zef:rawleyfowler>"
+	],
+	"description": "A high-performance forking web-server for the Raku web-framework Humming-Bird, written in C.",
+	"license": "Artistic 2.0",
+	"name": "Humming-Bird::Backend::Wings",
+	"raku": "6.d",
+	"provides": {
+        "Humming-Bird::Backend::Wings": "lib/Humming-Bird/Backend/Wings.rakumod"
+	},
+	"resources": [
+        "libraries/wings"
+	],
+	"source-url": "https://github.com/rawleyfowler/Humming-Bird-Backend-Wings",
+	"support": {
+		"source": "https://github.com/rawleyfowler/Humming-Bird-Backend-Wings"
+	},
+	"tags": [
+		"High-Performance",
+        "Humming-Bird",
+        "Backend"
+	],
+	"test-depends": [
+		"Test",
+		"Test::When",
+		"Test::Notice",
+		"Test::Util::ServerPort",
+		"Cro::HTTP::Client"
+	],
+	"version": "3.0.2"
+}
