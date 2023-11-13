@@ -38,6 +38,10 @@ has &!handler;
 method size_handler {
     return sub (int32 $pid) {
         return %!connections{$pid}<response>:exists ?? %!connections{$pid}<response>.bytes !! 0;
+
+        END {
+            %!connections{$pid}:delete;
+        }
     }
 }
 
@@ -74,7 +78,6 @@ method request_handler {
 
         $response //= %!connections{$pid}<response> = &!handler($request).encode($request.method !== HEAD);
 
-        # \0 hack so we can cast this to a std::string, and save having to return size.
         return nativecast(Pointer[int8], $response); # Include body if not a HEAD request.
     };
 }
