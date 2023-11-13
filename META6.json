@@ -8,8 +8,9 @@
 		"Rawley Fowler"
 	],
 	"build-depends": [
-        "Distribution::Builder::CMake:auth<zef:rawleyfowler>"
+        "Distribution::Builder::Cmake:auth<zef:rawleyfowler>"
 	],
+    "builder": "Distribution::Builder::Cmake",
 	"depends": [
         "Humming-Bird:auth<zef:rawleyfowler>"
 	],
