@@ -5,7 +5,7 @@ use nqp;
 use Humming-Bird::Glue;
 use Humming-Bird::Backend;
 
-constant $LIB ='resources/libraries/wings';
+constant $LIB = %?RESOURCES<libraries/wings> // 'resources/libraries/wings';
 
 unit class Humming-Bird::Backend::Wings does Humming-Bird::Backend;
 
